@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>
+            Food
+        </title>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        var name = sessionStorage.getItem("food-name");
+        var fat = sessionStorage.getItem("food-fat");
+        var carbs = sessionStorage.getItem("food-carbs");
+        var sugars = sessionStorage.getItem("food-sugars");
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Nutrients', 'per 100g'],
+          ['carbs', parseFloat(carbs)],
+          ['sugars',  parseFloat(sugars)],
+          ['fat', parseFloat(fat)],
+        ]);
+
+        var options = {
+          title: name,
+          is3D:true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    </head>
+
+    <body>
+            <nav>
+                    <div class="nav-wrapper">
+                      <a href="#!" class="brand-logo">Logo</a>
+                      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                      <ul class="right hide-on-med-and-down">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/food">Food</a></li>
+                        <li><a href="/login">Login</a></li>
+                      </ul>
+                    </div>
+                  </nav>
+                
+                  <ul class="sidenav" id="mobile-demo">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/food">Food</a></li>
+                        <li><a href="/login">Login</a></li>
+                  </ul>
+                  <div id="piechart" style="width: 900px; height: 500px;"></div>
+                  <div class = "container">
+                    <h4> Food details </h4>
+                    <ul>
+                      <li id = "name"> </li>
+                      <li id = "fat"> </li>
+                      <li id = "carbs"> </li>
+                      <li id = "sugars"> </li>
+
+                    </ul>
+                  </div>
+ 
+
+
+
+
+
+        <!-- Jquery loaded before materialize -->
+
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  <!-- Import materialize.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src = "readSession.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        //Initalising the mobile collapse navbar - required jQuery
+      $('.sidenav').sidenav();
+
+
+      });
+    </script>
+
+    </body>
+</html>
